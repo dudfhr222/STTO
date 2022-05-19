@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+* {
+    margin: 5px;
+    padding: 5px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+}
+
+.mediv {
+    border: 2px dotted navy;
+    border-radius: 15px;
+    width: 200px;
+    height: 170px;
+    margin: 2px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+}
+
+.mediv:hover {
+    background: #ffb72b;
+    transform: scale(1.05);
+}
+
+.leftd {
+    border-bottom: 0.5px dotted navy;
+    border-right: 0.5px dotted navy;
+}
+
+.rightd {
+    border-bottom: 0.5px dotted navy;
+}
+
+.endleftd {
+    border-right: 0.5px dotted navy;
+}
