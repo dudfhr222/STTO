@@ -8,6 +8,56 @@
     <meta charset="UTF-8">
     <title>참여중인 스터디</title>
     <link href="styles.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            border: 0;
+        }
+
+        .mediv {
+            border: 2px dotted navy;
+            border-radius: 15px;
+            width: 200px;
+            height: 170px;
+            margin: 2px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .mediv:hover {
+            background: #ffb72b;
+            transform: scale(1.05);
+        }
+
+        .leftd {
+            border-bottom: 0.5px dotted navy;
+            border-right: 0.5px dotted navy;
+        }
+
+        .rightd {
+            border-bottom: 0.5px dotted navy;
+        }
+
+        .endleftd {
+            border-right: 0.5px dotted navy;
+        }
+    </style>
     <%
         request.setCharacterEncoding("UTF-8");
     %>
@@ -26,7 +76,7 @@
     for (int i = 0; i < list.size(); i++) {
         GroupBean gb = list.get(i);
 %>
-<a href="../../GroupPage/groupPage.jsp?gr_mem_gnum=<%=gb.getGr_mem_gnum()%>">
+<a href="/STTO/GroupPage/groupPage.jsp?gr_mem_gnum=<%=gb.getGr_mem_gnum()%>">
 <%
     session.setAttribute("gr_mem_gnum", gb.getGr_mem_gnum());
 %>

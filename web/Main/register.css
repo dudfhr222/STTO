@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "EUC-KR";
 
 .wrapper {
     display: flex;
@@ -6,7 +6,6 @@
     align-items: center;
     min-height: 100vh;
 }
-
 #content {
     display: grid;
     place-items: center;
@@ -28,7 +27,7 @@ td {
     padding-top: 30px;
 }
 
-/* ë²„íŠ¼ ìŠ¤íƒ€ì¼ */
+/* ¹öÆ° ½ºÅ¸ÀÏ */
 .btn_normal {
     position: relative;
     border: none;
@@ -69,7 +68,7 @@ td {
     font-weight: bold;
 }
 
-    /* ì²´í¬ë°•ìŠ¤ ìŠ¤íƒ€ì¼  */
+    /* Ã¼Å©¹Ú½º ½ºÅ¸ÀÏ  */
 input[type="checkbox"] {
     -webkit-appearance: none;
     position: relative;
@@ -107,7 +106,7 @@ input[type="checkbox"]:checked::before {
     transform: scale(1) translate(-50%, -50%)
 }
 
-/* ì…€ë ‰íŠ¸ë°•ìŠ¤ ìŠ¤íƒ€ì¼ */
+/* ¼¿·ºÆ®¹Ú½º ½ºÅ¸ÀÏ */
 select {
     width: 150px;
     padding: .8em .5em;

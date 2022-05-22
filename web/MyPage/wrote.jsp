@@ -6,6 +6,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<a href="./Written/myContent.jsp">내가 작성한 글</a>
+	<a href="myPage.jsp?page=Written/myContent">내가 작성한 글</a>
 </body>
 </html>

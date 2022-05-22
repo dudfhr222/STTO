@@ -6,6 +6,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<a href="./Profile/myProfile.jsp">프로필</a>
+	<a href="myPage.jsp?page=Profile/myProfile">프로필</a>
 </body>
 </html>

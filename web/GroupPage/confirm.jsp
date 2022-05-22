@@ -11,6 +11,95 @@
     <title>확인 하기</title>
     <meta charset="UTF-8">
     <link href="style/confirm.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 5px;
+            padding: 5px;
+            margin : auto;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            width: 1200px
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .wrapper {
+            border: 3px solid navy;
+            border-radius: 30px;
+            width: 1000px;
+            display: grid;
+            place-items: center;
+            font-family: 'Gowun Dodum', sans-serif;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            color: navy;
+            font-family: 'Signika Negative', sans-serif;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+        }
+        .confirm_wrap {
+            width: 480px;
+            text-align: center;
+            border: 3px solid navy;
+            font-weight: bold;
+            overflow: hidden;
+            margin-bottom : 5px;
+        }
+
+        .confirm_wrap_name {
+            width: 480px;
+            text-align: center;
+            border: 3px solid navy;
+            font-weight: bold;
+            overflow: hidden;
+            float : left;
+            margin-left : 65px;
+            margin-top : 8px;
+        }
+        .btn_normal {
+            position: relative;
+            border: none;
+            min-width: 100px;
+            min-height: 50px;
+            background: #ffb72b;
+            border-radius: 1000px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: medium;
+            transition: 0.3s;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .btn_normal:hover {
+            transform: scale(1.2);
+        }
+
+        .btn_normal:hover::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            border: 6px solid #ffb72b;
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ring 1.5s infinite;
+        }
+    </style>
     <%
         request.setCharacterEncoding("UTF-8");
     %>
@@ -47,11 +136,8 @@
     </h4>
 </div>
 <div class="confirm_wrap_name">
-    <h1><%=gr_mem_name%>
-    </h1>
-    <button class="btn_normal"<%-- onclick="location.href='groupPage.jsp?gr_mem_gnum=<%=gr_mem_gnum%>';javascript:form.action='groupPage.jsp'" --%>
-        나가기
-    </button>
+    <h1><%=gr_mem_name%></h1>
+    <button class="btn_normal" onclick="location.href='groupPage.jsp?gr_mem_gnum=<%=gr_mem_gnum%>'">나가기</button>
 </div>
 <div style="overflow:auto; width : auto; height : auto;">
     <%

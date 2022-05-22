@@ -1,6 +1,5 @@
 @charset "EUC-KR";
 
-<style>
 * {
 	margin: 5px;
 	padding: 5px;
@@ -106,27 +105,6 @@ img {
 	overflow: hidden;
 }
 
-/* #content>#main_section {
-	width: 650px;
-	height: 600px;
-	float: right;
-	margin: 10px;
-} */
-
-/* #content>#main_aside {
-	width: 200px;
-	float: left;
-} */
-
-/* #main_section {
-	margin-bottom: 10px;
-	padding: 5px;
-	border: 1px solid navy;
-	border-radius: 15px;
-	background-color: smokewhite;
-	font-family: 'Gowun Dodum', sans-serif;
-	height: 1200px;
-} */
 .main_article{
 	width: 650px;
 	height: 600px;
@@ -165,4 +143,3 @@ img {
 	border-radius: 15px;
 	margin: 5px;
 }
-</style>

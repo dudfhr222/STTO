@@ -7,6 +7,71 @@
 <head>
     <title>기록하기</title>
     <link href="style/input.css" rel="stylesheet">
+    <style>
+        .wrap {
+            width: 100%;
+            text-align: center;
+            visibility: visible;
+        }
+
+        .in {
+            display: block;
+            margin: auto;
+        }
+
+        #main_header{
+            font-family: 'Gowun Dodum', sans-serif;
+            font-size: 2em;
+            color: navy;
+            font-weight: bold;
+            display: block;
+        }
+
+        .btn_normal {
+            position: relative;
+            border: none;
+            min-width: 100px;
+            min-height: 50px;
+            background: #ffb72b;
+            border-radius: 1000px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: medium;
+            transition: 0.3s;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        .txt {
+            border: 3px solid navy;
+            border-radius: 30px;
+            width: 1000px;
+            display: grid;
+            place-items: center;
+            font-family: 'Gowun Dodum', sans-serif;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .btn_normal:hover {
+            transform: scale(1.2);
+        }
+
+        .btn_normal:hover::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            border: 6px solid #ffb72b;
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ring 1.5s infinite;
+        }
+
+        #content{padding: 10px; margin: 10px;}
+    </style>
     <%
         request.setCharacterEncoding("UTF-8");
     %>
@@ -27,7 +92,7 @@
 %>
 <header id="main_header">
     <div id="title">
-        <h1 align="center">내가 쓴 글</h1>
+        <h1 align="center">기록하기</h1>
     </div>
 </header>
 <div id="content">

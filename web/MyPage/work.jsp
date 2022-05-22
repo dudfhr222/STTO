@@ -6,6 +6,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<a href="./MyWork/myWork.jsp">내가 참여중인 스터디</a>
+	<a href="myPage.jsp?page=MyWork/myWork">내가 참여중인 스터디</a>
 </body>
 </html>

@@ -15,15 +15,164 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>그룹페이지</title>
 <link href="style/groupframe.css" rel="stylesheet">
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+	* {
+		margin: auto;
+		padding: 5px;
+		font-family: "Gowun Dodum", sans-serif;
+	}
+	li {
+		list-style: none;
+	}
+	body {
+		width: 1025px;
+		margin: auto;
+	}
+	a {
+		text-decoration: none;
+	}
+	.title {
+		width: 1000px;
+		height: 50px;
+		text-align: center;
+		border: 3px solid navy;
+		margin-bottom: 10px;
+		float: left;
+	}
+	.date {
+		float: left;
+		width: 450px;
+		height: 50px;
+		text-align: center;
+		border: 2px dotted navy;
+		border-radius: 20px;
+		margin-bottom: 7px;
+	}
+	.description {
+		float: right;
+		height: 50px;
+		width: 420px;
+		border: 3px solid navy;
+		text-align: center;
+		margin: 0;
+	}
+
+	.date_description {
+		float: left;
+		width: 460px;
+		height: 50px;
+		text-align: center;
+		border: 3px solid navy;
+	}
+
+	.goal_description {
+		float: left;
+		width: 460px;
+		height: 300px;
+		text-align: center;
+		border: 3px solid navy;
+	}
+
+	.box {
+		float: left;
+		width: 430px;
+		height: 80px;
+		text-align: center;
+		border: 3px solid navy;
+		margin: 0;
+	}
+
+	.tooltip {
+		border-bottom: 1px dotted #000000;
+		color: #000000;
+		outline: none;
+		cursor: help;
+		text-decoration: none;
+		position: relative;
+	}
+
+	.tooltip span {
+		margin-left: -999em;
+		position: absolute;
+	}
+
+	.tooltip:hover span:nth-child(1) {
+		font-family: Calibri, Tahoma, Geneva, sans-serif;
+		position: fixed;
+		left: 1050px;
+		top: 260px;
+		z-index: 99;
+		margin-left: 0;
+		padding-left: 5px;
+		width: 460px;
+		height: 300px;
+		text-align: left;
+	}
+	.tooltip:hover span:nth-child(2) {
+		font-family: Calibri, Tahoma, Geneva, sans-serif;
+		position: fixed;
+		left: 1250px;
+		top: 260px;
+		z-index: 99;
+		margin-left: 0;
+		padding-left: 5px;
+		width: 460px;
+		height: 300px;
+		text-align: left;
+	}
+	#quote {
+		font-family: Calibri, Tahoma, Geneva, sans-serif;
+		position: fixed;
+		left: 990px;
+		top: 430px;
+		z-index: 99;
+		margin-left: 0;
+		padding-left: 5px;
+		width: 460px;
+		height: 300px;
+		text-align: center;
+	}
+	.btn_normal {
+		position: relative;
+		border: none;
+		min-width: 60px;
+		min-height: 30px;
+		background: #ffb72b;
+		border-radius: 1000px;
+		color: white;
+		cursor: pointer;
+		font-weight: bold;
+		font-size: medium;
+		transition: 0.3s;
+		font-family: 'Gowun Dodum', sans-serif;
+	}
+	��
+	.btn_normal:hover {
+		transform: scale(1.2);
+	}
+	��
+	.btn_normal:hover::after {
+		content: "";
+		width: 20px;
+		height: 20px;
+		border-radius: 100%;
+		border: 6px solid #ffb72b;
+		position: absolute;
+		z-index: -1;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		animation: ring 1.5s infinite;
+	}
+</style>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 </head>
-<body style="margin : auto;">
+<body>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html;charset=UTF-8");
@@ -109,50 +258,68 @@
 	}
 %>
 <%
-	//얘도 따로 빼둬야함
 	String enddate = gb.getGroup_finishdate();
+	String dday = gb.getDday(enddate);
 %>
-<%
-	Calendar today = Calendar.getInstance();
-	Calendar dday = Calendar.getInstance();
-	
-	String finish = enddate;
-	
-	int finishYear = Integer.parseInt(finish.substring(0,4));
-	int finishMonth = Integer.parseInt(finish.substring(5,7));
-	int finishDate = Integer.parseInt(finish.substring(8));
-	
-	dday.set(finishYear, finishMonth-1, finishDate); //디데이 날짜 설정
-	
-	long l_dday = dday.getTimeInMillis() / (24*60*60*1000);
-	long l_today = today.getTimeInMillis() / (24*60*60*1000);
-	
-	long substract = 0;
-	String ddayStr = "D";
-	
-	if (l_today > l_dday) {
-	    substract = l_today-l_dday;
-	    ddayStr = "종료";
-	} else if (l_today < l_dday) {
-	    substract = l_dday-l_today;
-	    ddayStr += "-" + substract;
-	} else {
-	    ddayStr += "-Day";
-	}
-%>   		       		
         	</table>
         </div>
         <div id="quote">
 	    	<h3></h3>	
 	        <h4></h4>
     	</div>
-    <script src="js/quotes.js"></script>
+    <script>
+		const quotes=[
+			{
+				quote:"What do you want a meaning for? Life is a desire, not a meaning.",
+				author:"Charlie Chaplin",
+			},{
+				quote:"When you jump for joy, beware that no one moves the ground from beneath your feet.",
+				author:"Stanislaw J. Lec",
+			},{
+				quote:"It is wise to apply the oil of refined politeness to the mechanisms of friendship.",
+				author:"Colette",
+			},{
+				quote:"A penny saved is a penny earned.",
+				author:"Benjamin Franklin",
+			},{
+				quote:"Mistakes are the portals of discovery.",
+				author:"James Joyce",
+			},{
+				quote:"By perseverance the snail reached the ark.",
+				author:"Charles Haddon Spurgeon",
+			},{
+				quote:"If I had to live my life again, I'd make the same mistakes, only sooner.",
+				author:"Tallulah Bankhead",
+			},{
+				quote:"The greatest virtues are those which are most useful to other persons.",
+				author:"Aristotle",
+			},{
+				quote:"No passion so effectually robs the mind of all its powers of acting and reasoning as fear.",
+				author:"Edmund Burke",
+			},{
+				quote:"Force without wisdom falls of its own weight.",
+				author:"Horace"
+			}
+		];
+
+		const quote = document.querySelector("#quote h3");
+		const author = document.querySelector("#quote h4");
+
+		function requote(){
+			const todaysQuote = quotes[Math.floor(Math.random()*quotes.length-1)];
+
+			quote.innerText = todaysQuote.quote;
+			author.innerText = todaysQuote.author;
+		};
+		requote();
+		setInterval(requote,5000);
+	</script>
     	<div>
 	        <table class="description">
 	            <tr>
 	                <td class="date_description">
 	                    <div style="text-align: center; line-height : 10px;">
-	                        <h1><%=ddayStr %></h1>
+	                        <h1><%=dday %></h1>
 	                    </div>            
 	                </td>
 	            </tr>

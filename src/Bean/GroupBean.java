@@ -1,5 +1,7 @@
 package Bean;
 
+import java.util.Calendar;
+
 //그룹
 public class GroupBean {
     private int gr_mem_gnum; //그룹 번호
@@ -175,5 +177,35 @@ public class GroupBean {
 
     public void setGr_check(int gr_check) {
         this.gr_check = gr_check;
+    }
+
+    public String getDday(String enddate){
+        Calendar today = Calendar.getInstance();
+        Calendar dday = Calendar.getInstance();
+
+        String finish = enddate;
+
+        int finishYear = Integer.parseInt(finish.substring(0,4));
+        int finishMonth = Integer.parseInt(finish.substring(5,7));
+        int finishDate = Integer.parseInt(finish.substring(8));
+
+        dday.set(finishYear, finishMonth-1, finishDate); //디데이 날짜 설정
+
+        long l_dday = dday.getTimeInMillis() / (24*60*60*1000);
+        long l_today = today.getTimeInMillis() / (24*60*60*1000);
+
+        long substract = 0;
+        String ddayStr = "D";
+
+        if (l_today > l_dday) {
+            substract = l_today-l_dday;
+            ddayStr = "종료";
+        } else if (l_today < l_dday) {
+            substract = l_dday-l_today;
+            ddayStr += "-" + substract;
+        } else {
+            ddayStr += "-Day";
+        }
+        return ddayStr;
     }
 }

@@ -116,16 +116,17 @@ public class BoardDBBean {
 		return re;
 	}
 
-	public ArrayList<BoardBean> listBoard(String b_area, String b_inter_s, String b_inter_c){
-		//ResultSet pageSet=null;
+	public ArrayList<BoardBean> listBoard(String b_area, String b_inter_s, String b_inter_c) throws NullPointerException{
 		Connection conn=null;
 		PreparedStatement pstm = null;
 		ResultSet rs=null;
 		ArrayList<BoardBean> boardList = new ArrayList<BoardBean>();
+		String sql = "";
 		try {
 			conn = getConnection();
+			sql = "select * from boards where b_status != b_stmember order by b_group asc";
 			if(b_area == null && b_inter_s == null && b_inter_c== null) {
-				pstm = conn.prepareStatement("select * from boards where b_status != b_stmember order by b_group asc");
+				pstm = conn.prepareStatement(sql);
 				rs = pstm.executeQuery();
 
 				while(rs.next()) {
@@ -138,13 +139,13 @@ public class BoardDBBean {
 					bb.setArea(rs.getString("b_area"));
 					bb.setLanguages(rs.getString("b_language"));
 					bb.setB_inter_c(rs.getString("b_inter_ch"));
-					
+
 					boardList.add(bb);
 				}
 			}else if(b_area.equals("지역") && b_inter_s.equals("개발분야") && b_inter_c.equals("언어")) {
-				pstm = conn.prepareStatement("select * from boards where b_status != b_stmember order by b_group asc");
+				pstm = conn.prepareStatement(sql);
 				rs = pstm.executeQuery();
-				
+
 				while(rs.next()) {
 					BoardBean bb = new BoardBean();
 					bb.setB_group(rs.getInt("b_group"));
@@ -159,7 +160,7 @@ public class BoardDBBean {
 					boardList.add(bb);
 				}
 			}else {
-				pstm = conn.prepareStatement("select * from boards where b_area=? and b_language=? and b_inter_ch=? and where b_status != b_stmember order by b_group asc");
+				pstm = conn.prepareStatement("select * from boards where b_area=? and b_language=? and b_inter_ch=? and b_status != b_stmember order by b_group asc");
 				pstm.setString(1, b_area); //지역
 				pstm.setString(2, b_inter_c); //언어 => b_language
 				pstm.setString(3, b_inter_s); //분야 => b_inter_ch

@@ -60,7 +60,7 @@
             <%=bb.getB_group() %>
         </td>
         <td>
-            <a href="regList.jsp?mem_id=<%=bb.getB_id() %>&b_group=<%=bb.getB_group()%>&b_stmember=<%=bb.getB_stmember()%>&b_status=<%=bb.getB_status()%>">
+            <a href="/STTO/MyPage/Written/regList.jsp?mem_id=<%=bb.getB_id() %>&b_group=<%=bb.getB_group()%>&b_stmember=<%=bb.getB_stmember()%>&b_status=<%=bb.getB_status()%>">
             <%=bb.getB_title() %>
             </a>
         </td>

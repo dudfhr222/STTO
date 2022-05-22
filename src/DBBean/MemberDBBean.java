@@ -318,7 +318,7 @@ public class MemberDBBean {
         return list;
     }
 
-    public ArrayList<GroupRegisterBean> reqList(String mem_id) {
+    public ArrayList<GroupRegisterBean> reqList(String mem_id, int b_group) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;

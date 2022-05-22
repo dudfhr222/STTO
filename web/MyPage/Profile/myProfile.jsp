@@ -5,6 +5,73 @@
 <head>
 <title>회원정보</title>
 	<link href="style/myProfile.css" rel="stylesheet">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+		* {
+			margin: 5px;
+			padding: 5px;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		img {
+			border: 0;
+		}
+
+		.tab {
+			border: 2px solid navy;
+			border-collapse: collapse;
+			border-radius: 15px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+
+		.title_info {
+			font-size: 30px;
+			font-weight: bold;
+		}
+
+		.btn_normal1 {
+			position: relative;
+			border: none;
+			min-width: 50px;
+			min-height: 30px;
+			background: #ffb72b;
+			border-radius: 1000px;
+			color: white;
+			cursor: pointer;
+			font-weight: bold;
+			font-size: medium;
+			transition: 0.3s;
+			font-family: 'Gowun Dodum', sans-serif;
+		}
+
+		.btn_normal1:hover {
+			transform: scale(1.2);
+		}
+
+		.btn_normal1:hover::after {
+			content: "";
+			width: 30px;
+			height: 30px;
+			border-radius: 100%;
+			border: 6px solid #ffb72b;
+			position: absolute;
+			z-index: -1;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			animation: ring 1.5s infinite;
+		}
+	</style>
 </head>
 <body>
 	<%
@@ -55,8 +122,8 @@
 		</table>
 	</div>
 	<div align="center" class="btn_area">
-		<input class="btn_normal1" type="button" value="회원정보수정" onclick="javascript:window.location='profileUpdate.jsp'">
-		<input class="btn_normal1" type="button" value="회원탈퇴" onclick="javascript:window.location='profileDelete.jsp'">
+		<input class="btn_normal1" type="button" value="회원정보수정" onclick="javascript:window.location='/STTO/MyPage/Profile/profileUpdate.jsp'">
+		<input class="btn_normal1" type="button" value="회원탈퇴" onclick="javascript:window.location='/STTO/MyPage/Profile/profileDelete.jsp'">
 	</div>
 </body>
 </html>

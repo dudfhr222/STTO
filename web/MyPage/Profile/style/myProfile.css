@@ -1,6 +1,4 @@
-@import
-url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
-;
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
 * {
     margin: 5px;
@@ -19,7 +17,7 @@ img {
     border: 0;
 }
 
-.tab{
+.tab {
     border: 2px solid navy;
     border-collapse: collapse;
     border-radius: 15px;

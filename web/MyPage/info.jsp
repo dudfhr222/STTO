@@ -8,6 +8,6 @@
 <head>
 </head>
 <body>
-<h1><a href="myPage.jsp"><%=mem_id%><br>(<%=mem_name%>)</a></h1>
+<h1><a href="myPage.jsp"><%=mem_id%> <br> (<%=mem_name%>)</a></h1>
 </body>
 </html>
