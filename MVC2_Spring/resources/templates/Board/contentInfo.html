@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 정보</title>
+    <link th:href="@{/css/board/contentInfo.css}" rel="stylesheet">
+</head>
+<body>
+<!--
+<%
+String mem_id = (String) session.getAttribute("mem_id"); //(세션)신청자 이름
+String mem_name = (String) session.getAttribute("mem_name"); //(세션)신청자 아이디
+int b_group = Integer.parseInt(request.getParameter("b_group")); //메인에서 글 번호를 이용해 페이지 들어옴
+BoardDBBean bdb = BoardDBBean.getInstance(); //해당 글 번호의 글 정보 가져옴
+BoardBean board = bdb.getConInfo(b_group);
+%>-->
+<div class="wrapper">
+    <form th:action="@{/register}" method="post" id="content">
+        <h1 class="title">스터디 그룹 모집글</h1>
+        <table border="1" align="center">
+            <tr height="30">
+                <td width="80" align="center">작성자</td>
+                <td>
+                    <span th:text="${board.b_title}"/>
+                </td>
+                <td width="80" align="center">언 어</td>
+                <td width="240">
+                    <span th:text="${board.b_language}"/>
+                </td>
+            </tr>
+            <tr height="30">
+                <td width="80" align="center">지 역</td>
+                <td width="240">
+                    <span th:text="${board.b_area}"/>
+                </td>
+                <td width="80" align="center">분 야</td>
+                <td width="240">
+                    <span th:text="${board.b_inter_ch}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="100" align="center"><b>시작일</b></td>
+                <td>
+                    <span th:text="${board.b_startdate}"/>
+                </td>
+                <td width="100" align="center"><b>종료일</b></td>
+                <td>
+                    <span th:text="${board.b_finishdate}"/>
+                </td>
+            </tr>
+            <tr height="30">
+                <td width="80" align="center">글 제 목</td>
+                <td width="240" colspan="3">
+                    <span th:text="${board.b_title}"/>
+                </td>
+            </tr>
+            <tr height="30">
+                <td width="80" align="center">스터디 목표</td>
+                <td width="240" colspan="3">
+                    <span th:text="${board.b_goal}"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <span th:text="${board.b_content}"/>
+                </td>
+            </tr>
+        </table>
+        <div align="center">
+            <input type="hidden" name="mem_id" value="<%=mem_id %>"><br>
+            <input type="hidden" name="mem_name" value="<%=mem_name%> "><br>
+            <input type="hidden" name="b_id" value="<%=board.getB_id() %>"><br>
+            <input type="hidden" name="b_group" value="<%=b_group %>"><br>
+            <input type="hidden" name="b_title" value="<%=board.getB_title() %>"><br>
+
+            <span th:if="${session.mem_id}">
+                <input class="btn_normal" type="submit" value="가입 요청">
+            </span>
+           <input class="btn_normal" type="button" value="글목록" th:onclick="|location.href='@{/}'|">
+       </div>
+   </form>
+</div>
+</body>
+</html>

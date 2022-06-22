@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>STTO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <link th:href="@{css/index.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Session Value -->
+    <span th:text="${session.mem_id}"></span>
+    <span th:text="${session.mem_name}"></span>
+
+    <!-- 네비게이션 -->
+    <!-- 세션 값 있을 때 -->
+    <span th:if="${session.mem_id}">
+         <input class="btn_normal" type="button" value="글쓰기"
+                th:onclick="|location.href='@{/Board/boardWrite}'|">
+<!--                th:onclick="'location.href=\''+@{${/Board/boardWrite}+'\''">-->
+        <input class="btn_normal" type="button" value="나의 스터디"
+               th:onclick="|location.href='@{/MyPage}'|">
+<!--               onclick="javascript:window.location='MyPage/myPage.jsp'">-->
+        <input class="btn_normal" type="button" value="로그아웃"
+               th:onclick="|location.href='@{/logOut}'|">
+    </span>
+    <!-- 세션 값 없을 때 -->
+    <span th:unless="${session.mem_id}">
+       <input class="btn_normal" type="button" value="로그인"
+              th:onclick="|location.href='@{/logIn}'|">
+        <input class="btn_normal" type="button" value="회원가입"
+              th:onclick="|location.href='@{/Register}'|">
+    </span>
+    <div class="main_logo" align="center">
+        STTO
+    </div>
+    <div class="form-frame">
+        <form th:action="@{index}" method="get">
+            <table class="table_search" align="center">
+                <tr>
+                    <td align="center">
+                        <select id="b_area" name="b_area">
+                            <option value="지역" selected="selected" onchange="checkArea()">지역</option>
+                            <option value="seoul">서울</option>
+                            <option value="gyeonggi">경기</option>
+                            <option value="incheon">인천</option>
+                            <option value="busan">부산</option>
+                            <option value="daegu">대구</option>
+                            <option value="daejeon">대전</option>
+                            <option value="gwangju">광주</option>
+                            <option value="online">온라인</option>
+                        </select>
+                    </td>
+                    <td align="center">
+                        <select id="b_inter_s" name="b_inter_s">
+                            <option value="개발분야" selected="selected">개발 분야</option>
+                            <option value="backend">백엔드</option>
+                            <option value="frontend">프론트엔드</option>
+                        </select>
+                    </td>
+                    <td align="center">
+                        <select id="b_inter_c" name="b_inter_c">
+                            <option value="언어" selected="selected">언어</option>
+                            <option value="java">java</option>
+                            <option value="javascript">javascript</option>
+                            <option value="spring">spring</option>
+                            <option value="kotlin">kotlin</option>
+                            <option value="python">python</option>
+                            <option value="jsp">jsp</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table class="table_list" align="center">
+                <tr th:each="contents, iterator : ${conList}">
+                    <a th:href="@{/Board/contentInfo(b_number=${contents.b_number})}">
+                        <div class="consi">
+                            <div class="consi_lan">
+                                <span th:text="${contents.b_title}">title</span>
+                                <span th:text="${contents.b_language}">language</span>
+                                <span th:text="${contents.b_area}"></span>
+                                <span th:text="${contents.b_inter_ch}"></span>
+                                <input type="hidden" th:value="${contents.b_number}"/>
+<!--                                <span th:if="${iterator.index}%4 == 0">-->
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </tr>
+                </span>
+            </table>
+
+<!--            -->
+            <!--
+            <table class="table_list" align="center">
+                            <tr height="25" bgcolor="#F7F7F7"
+                                onmouseover="this.style.backgroundColor='#eeeeef'"
+                                onmouseout="this.style.backgroundColor='#f7f7f7'">
+                검색한 값 컨트롤러에 넘긴 다음에 화면에 출력해야함
+                                <%
+                                //검색
+                                String b_area = request.getParameter("b_area");
+                                String b_inter_s = request.getParameter("b_inter_s");
+                                String b_inter_c = request.getParameter("b_inter_c");
+
+                                BoardDBBean db = BoardDBBean.getInstance();
+                                ArrayList<BoardBean> list = db.listBoard(b_area, b_inter_s, b_inter_c);
+
+                                for(int i=0; i<list.size(); i++){
+                                board = list.get(i);
+
+                                int b_group = board.getB_group();
+                                String b_title = board.getB_title();
+                                String language = board.getLanguages();
+                                String inter_c = board.getB_inter_c();
+                                String area = board.getArea();
+                                if(i%4==0){
+                                %>
+                            <tr></tr>
+                            <%
+                            }
+                            %>
+                            <td>
+                                <a href="Board/contentInfo.jsp?b_group=<%=b_group%>">
+                                    <div class="consi">
+                                        <div class="consi_lan">
+                                            <%
+                                            if (language.equals("java")) {
+                                            %>
+                                            <img src="/STTO/icon/java.png">
+                                            <%
+                                            } else if (language.equals("javascript")) {
+                                            %>
+                                            <img src="/STTO/icon/js.png" rel="icon">
+                                            <%
+                                            } else if (language.equals("spring")) {
+                                            %>
+                                            <img src="/STTO/icon/spring.png">
+                                            <%
+                                            } else if (language.equals("jsp")) {
+                                            %>
+                                            <img src="/STTO/icon/jsp.png">
+                                            <%
+                                            } else if (language.equals("kotlin")) {
+                                            %>
+                                            <img src="/STTO/icon/kotlin.png">
+                                            <%
+                                            } else if (language.equals("python")) {
+                                            %>
+                                            <img src="/STTO/icon/python.png">
+                                            <%
+                                            }
+                                            %>
+                                        </div>
+                                        <div class="consi_inch">
+                                            <%
+                                            if (inter_c.equals("backend")) {
+                                            %>
+                                            <img src="/STTO/icon/back.png">
+                                            <%
+                                            } else if (inter_c.equals("frontend")) {
+                                            %>
+                                            <img src="/STTO/icon/front.png">
+                                            <%
+                                            }
+                                            %>
+                                        </div>
+                                        <br><br>
+                                        <div class="consi_area" align=center>
+                                            지역 : <%=area %>
+                                        </div>
+                                        <div class="consi_title" align=center>
+                                            <%=b_title %>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
+                            <%
+                            }
+                            %>
+                            </tr>
+                        </table> -->
+<!--            -->
+            <div align="center">
+                <input class="btn-search" type="submit" value="찾기">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
